@@ -29,12 +29,12 @@ int main(){
 
 //파일 1의 정보를 가져오는 함수 작성 - 이민재
 void filestat1(){
-    
+    stat("text1", &stat1);
 }
 
 //파일 2의 정보를 가져오는 함수 작성 - 이민재
 void filestat2(){
-    
+    stat("text2", &stat2);
 }
 
 //파일 1의 시간 정보를 가져오는 함수 작성 - 임강호
