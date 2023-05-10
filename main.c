@@ -3,6 +3,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <time.h>
+#include <stdlib.h>
 
 struct stat stat1, stat2;
 struct tm *time1, *time2;
@@ -25,6 +26,8 @@ int main(){
     blockcmp();
     datecmp();
     timecmp();
+    free(time1);
+    free(time2);
 }
 
 //파일 1의 정보를 가져오는 함수 작성 - 이민재
@@ -39,12 +42,14 @@ void filestat2(){
 
 //파일 1의 시간 정보를 가져오는 함수 작성 - 임강호
 void filetime1(){
-    time1 = localtime(&stat1.st_mtime);
+    time1 = (struct tm*)malloc(sizeof(struct tm));
+    *time1 = *localtime(&stat1.st_mtime);
 }
 
 //파일 2의 시간 정보를 가져오는 함수 작성 - 임강호
 void filetime2(){
-    time2 = localtime(&stat2.st_mtime);
+    time2 = (struct tm*)malloc(sizeof(struct tm));
+    *time2 = *localtime(&stat2.st_mtime);
 }
 
 //두 개의 파일 크기를 비교하는 함수 작성 - 이민재
